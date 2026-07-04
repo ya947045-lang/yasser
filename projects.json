@@ -11,7 +11,7 @@
       "components": ["DHT22", "BMP280", "OLED 128x64", "MQ-135", "Anemometer", "Rain Sensor"],
       "image": "🌦️",
       "category": "IoT",
-      "github": "https://github.com/futuremaker/esp32-weather"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/esp32_weather_station.ino"
     },
     {
       "id": "pico-robot",
@@ -24,7 +24,7 @@
       "components": ["Servo Motors x6", "HC-05 Bluetooth", "Joystick", "Power Supply 5V 5A"],
       "image": "🦾",
       "category": "Robotics",
-      "github": "https://github.com/futuremaker/pico-robot"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/pico_robot_arm.ino"
     },
     {
       "id": "pro-micro-keypad",
@@ -37,7 +37,7 @@
       "components": ["Cherry MX Blue Switches", "Rotary Encoder x4", "OLED 0.96\"", "LEDs", "Keycaps"],
       "image": "⌨️",
       "category": "Input Devices",
-      "github": "https://github.com/futuremaker/macro-keypad"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/macro_keypad.ino"
     },
     {
       "id": "esp32-audio",
@@ -50,7 +50,7 @@
       "components": ["MAX98357", "Speaker 20W", "Touch Screen 2.8\"", "Microphone", "SD Card Module"],
       "image": "🎵",
       "category": "Audio",
-      "github": "https://github.com/futuremaker/esp32-audio"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/esp32_audio_player.ino"
     },
     {
       "id": "arduino-security",
@@ -63,7 +63,7 @@
       "components": ["PIR Sensor", "Camera OV7670", "Buzzer", "LED Strip", "Relay Module"],
       "image": "🔒",
       "category": "Security",
-      "github": "https://github.com/futuremaker/security-system"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/home_security.ino"
     },
     {
       "id": "esp32-plant",
@@ -76,7 +76,7 @@
       "components": ["Soil Moisture Sensor", "Water Pump", "Solar Panel 5V", "Battery 18650", "Relay Module"],
       "image": "🌱",
       "category": "Smart Home",
-      "github": "https://github.com/futuremaker/plant-watering"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/smart_plant_watering.ino"
     },
     {
       "id": "pico-matrix",
@@ -102,7 +102,7 @@
       "components": ["Two-way Mirror", "Display 15\"", "Camera", "Microphone", "Speaker"],
       "image": "🪞",
       "category": "AI",
-      "github": "https://github.com/futuremaker/smart-mirror"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/led_matrix_display.ino"
     },
     {
       "id": "arduino-gps",
@@ -115,7 +115,7 @@
       "components": ["GPS NEO-6M", "OLED 0.96\"", "SIM800L GSM", "Battery 18650", "SD Card Module"],
       "image": "📍",
       "category": "GPS",
-      "github": "https://github.com/futuremaker/gps-tracker"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/gps_tracker.ino"
     },
     {
       "id": "esp32-dashcam",
@@ -128,7 +128,7 @@
       "components": ["Camera OV2640", "SD Card", "GPS Module", "Accelerometer", "Power Supply 12V"],
       "image": "🚗",
       "category": "AI",
-      "github": "https://github.com/futuremaker/dashcam"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/dash_cam.ino"
     },
     {
       "id": "arduino-robot-car",
