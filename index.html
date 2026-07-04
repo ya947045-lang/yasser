@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+  <title>Future Maker · Build the future</title>
+  <meta name="description" content="Future Maker – open source hardware projects, tutorials, and components for makers." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+  
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Future Maker" />
+  <meta property="og:description" content="Build the future with open source electronics." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    /* ----- Reset & base ----- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0b0d10;
+      color: #e8edf2;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      padding: 0 1rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    a { color: #5b9eff; text-decoration: none; }
+    a:hover { color: #8bb8ff; }
+    .container {
+      max-width: 1280px;
+      width: 100%;
+    }
+
+    /* ----- glassmorphism & cards ----- */
+    .glass {
+      background: rgba(20, 24, 30, 0.55);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 2rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .card {
+      background: rgba(16, 20, 26, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.5rem;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+      border-color: rgba(90, 158, 255, 0.15);
+    }
+
+    /* ----- layout helpers ----- */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.8rem; }
+    .flex { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .gap-1 { gap: 1rem; }
+    .mt-2 { margin-top: 2.5rem; }
+    .mb-1 { margin-bottom: 1rem; }
+    .text-center { text-align: center; }
+    .pill {
+      background: rgba(90, 158, 255, 0.12);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(90, 158, 255, 0.08);
+      display: inline-block;
+    }
+
+    /* ----- typography ----- */
+    h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
+    h1 { font-size: clamp(2.6rem, 10vw, 4.4rem); line-height: 1.1; }
+    h2 { font-size: clamp(2rem, 6vw, 2.8rem); margin-bottom: 0.8rem; }
+    h3 { font-size: 1.6rem; font-weight: 450; }
+    .hero-sub { font-size: 1.2rem; opacity: 0.8; max-width: 640px; margin: 0.5rem auto 1.8rem; }
+
+    /* ----- search box ----- */
+    .search-wrap {
+      background: rgba(12, 16, 22, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 60px;
+      padding: 0.1rem 0.1rem 0.1rem 1.8rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      max-width: 560px;
+      margin: 1.8rem auto;
+      transition: border 0.2s;
+    }
+    .search-wrap:focus-within { border-color: #5b9eff; }
+    .search-wrap input {
+      background: transparent;
+      border: none;
+      padding: 1rem 0.5rem;
+      font-size: 1rem;
+      color: #f0f4fa;
+      width: 100%;
+      outline: none;
+    }
+    .search-wrap button {
+      background: #5b9eff;
+      border: none;
+      color: #0b0d10;
+      font-weight: 600;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.15s;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .search-wrap button:hover { background: #7aafff; }
+
+    /* ----- project cards (dynamic) ----- */
+    .project-card .title { font-size: 1.4rem; font-weight: 500; margin: 0.5rem 0 0.2rem; }
+    .project-card .meta { font-size: 0.9rem; opacity: 0.7; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .project-card .desc { margin: 0.8rem 0 1rem; opacity: 0.8; }
+
+    /* ----- stats / chips ----- */
+    .stat-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 4rem; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2.2rem; font-weight: 500; letter-spacing: -0.02em; }
+    .stat-label { opacity: 0.6; font-size: 0.9rem; }
+
+    /* ----- footer ----- */
+    footer { margin-top: 4rem; padding: 2.5rem 0 0; border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; justify-content: center; }
+
+    /* ----- 404 / messages ----- */
+    .not-found { padding: 4rem 1rem; text-align: center; }
+    .not-found h2 { font-size: 3rem; }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .search-wrap { flex-wrap: wrap; background: transparent; border: none; padding: 0; }
+      .search-wrap input { background: rgba(12,16,22,0.7); border-radius: 60px; padding: 1rem 1.5rem; }
+      .search-wrap button { width: 100%; margin-top: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="app">
+  <!-- header -->
+  <header class="flex-between" style="padding: 1.2rem 0 0.5rem;">
+    <span style="font-size: 1.8rem; font-weight: 500; letter-spacing: -0.03em;">🚀 Future Maker</span>
+    <nav class="flex" style="gap: 0.2rem 1.2rem;">
+      <a href="#" data-page="home">Home</a>
+      <a href="#" data-page="projects">Projects</a>
+      <a href="#" data-page="tutorials">Tutorials</a>
+      <a href="#" data-page="boards">Boards</a>
+      <a href="#" data-page="about">About</a>
+    </nav>
+  </header>
+
+  <!-- dynamic content -->
+  <main id="main-content">
+    <!-- will be replaced by JS -->
+  </main>
+
+  <!-- footer -->
+  <footer class="text-center">
+    <div class="footer-links">
+      <a href="#" data-page="about">About</a>
+      <a href="#" data-page="contact">Contact</a>
+      <a href="#" data-page="downloads">Downloads</a>
+      <a href="#" data-page="components">Components</a>
+    </div>
+    <div style="margin-top: 1.5rem; opacity: 0.4; font-size: 0.9rem;">© 2026 Future Maker · open source</div>
+  </footer>
+</div>
+
+<script>
+  (function() {
+    "use strict";
+
+    // ---------- DATA (embedded JSON) ----------
+    const PROJECTS = [
+      {
+        id: "esp32-weather",
+        name: "ESP32 Weather Station",
+        description: "Monitor temperature, humidity, and pressure with a beautiful dashboard.",
+        difficulty: "Intermediate",
+        cost: "$45",
+        buildTime: "2h",
+        boards: ["ESP32 DevKit", "ESP32-S3 UNO"],
+        components: ["DHT22", "BMP280", "OLED 128x64"],
+        image: "🌦️",
+        category: "IoT",
+        tutorial: "esp32-weather-tutorial",
+        github: "https://github.com/futuremaker/weather",
+        downloads: { zip: "#", pdf: "#", wiring: "#" }
+      },
+      {
+        id: "pico-robot",
+        name: "Raspberry Pi Pico Robot",
+        description: "Build a small differential-drive robot with ultrasonic obstacle avoidance.",
+        difficulty: "Advanced",
+        cost: "$72",
+        buildTime: "4h",
+        boards: ["Raspberry Pi Pico"],
+        components: ["HC-SR04", "L298N", "Motors", "Battery pack"],
+        image: "🤖",
+        category: "Robotics",
+        tutorial: "pico-robot-tutorial",
+        github: "https://github.com/futuremaker/pico-robot",
+        downloads: { zip: "#", pdf: "#", wiring: "#" }
+      },
+      {
+        id: "pro-micro-keypad",
+        name: "Pro Micro Macro Keypad",
+        description: "A 3x3 programmable macro keypad with rotary encoder.",
+        difficulty: "Beginner",
+        cost: "$28",
+        buildTime: "1.5h",
+        boards: ["Arduino Pro Micro"],
+        components: ["Cherry MX switches", "Rotary encoder", "Keycaps"],
+        image: "⌨️",
+        category: "Input",
+        tutorial: "pro-micro-keypad-tutorial",
+        github: "https://github.com/futuremaker/keypad",
+        downloads: { zip: "#", pdf: "#", wiring: "#" }
+      }
+    ];
+
+    const TUTORIALS = [
+      { id: "esp32-weather-tutorial", title: "ESP32 Weather Station Guide", desc: "Step-by-step wiring and code." },
+      { id: "pico-robot-tutorial", title: "Pico Robot Assembly", desc: "Mechanics and MicroPython." },
+      { id: "pro-micro-keypad-tutorial", title: "Keypad Firmware with QMK", desc: "Custom keymaps." }
+    ];
+
+    const BOARDS = [
+      { name: "ESP32-S3 UNO", status: "stable", doc: "#", download: "#", github: "#" },
+      { name: "Arduino Pro Micro", status: "stable", doc: "#", download: "#", github: "#" },
+      { name: "ESP32 DevKit", status: "stable", doc: "#", download: "#", github: "#" },
+      { name: "Raspberry Pi Pico", status: "preview", doc: "#", download: "#", github: "#" }
+    ];
+
+    const COMPONENTS = ["DHT22", "BMP280", "OLED 128x64", "HC-SR04", "L298N", "Cherry MX switches"];
+
+    // ---------- DOM refs ----------
+    const main = document.getElementById('main-content');
+
+    // ---------- router ----------
+    function navigate(page, params) {
+      let html = '';
+      switch (page) {
+        case 'home': html = renderHome(); break;
+        case 'projects': html = renderProjects(); break;
+        case 'project-detail': html = renderProjectDetail(params?.id); break;
+        case 'tutorials': html = renderTutorials(); break;
+        case 'boards': html = renderBoards(); break;
+        case 'components': html = renderComponents(); break;
+        case 'about': html = renderAbout(); break;
+        case 'contact': html = renderContact(); break;
+        case 'downloads': html = renderDownloads(); break;
+        case 'search': html = renderSearch(params?.q); break;
+        default: html = render404();
+      }
+      main.innerHTML = html;
+      // re-bind search if present
+      const searchForm = main.querySelector('#search-form');
+      if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const inp = searchForm.querySelector('input');
+          if (inp && inp.value.trim()) {
+            navigate('search', { q: inp.value.trim() });
+          }
+        });
+      }
+      // re-bind click on cards (project detail)
+      main.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          const id = card.dataset.projectId;
+          if (id) navigate('project-detail', { id });
+        });
+      });
+      // navigation links inside main
+      main.querySelectorAll('[data-page]').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const p = el.dataset.page;
+          if (p) navigate(p);
+        });
+      });
+    }
+
+    // ---------- PAGE RENDERERS ----------
+    function renderHome() {
+      const stats = [
+        { num: PROJECTS.length, label: 'Projects' },
+        { num: BOARDS.length, label: 'Supported Boards' },
+        { num: COMPONENTS.length, label: 'Components' },
+        { num: TUTORIALS.length, label: 'Tutorials' }
+      ];
+      return `
+        <!-- hero -->
+        <section class="text-center" style="padding: 2.5rem 0 1.5rem;">
+          <h1>Build the <span style="color:#5b9eff;">future</span></h1>
+          <p class="hero-sub">Open source hardware projects, tutorials, and components for makers.</p>
+          <div class="search-wrap" id="search-form">
+            <input type="text" placeholder="Search projects, boards, components…" id="search-input" />
+            <button type="submit">Search</button>
+          </div>
+        </section>
+
+        <!-- stats -->
+        <section class="glass" style="padding: 2rem 1.5rem; margin: 2rem 0;">
+          <div class="stat-grid">
+            ${stats.map(s => `<div class="stat-item"><div class="stat-number">${s.num}</div><div class="stat-label">${s.label}</div></div>`).join('')}
+          </div>
+        </section>
+
+        <!-- latest project -->
+        <h2 class="mt-2">⚡ Latest Project</h2>
+        <div class="card project-card" data-project-id="${PROJECTS[0].id}" style="cursor:pointer;">
+          <div style="font-size:2.8rem;">${PROJECTS[0].image}</div>
+          <div class="title">${PROJECTS[0].name}</div>
+          <div class="meta">${PROJECTS[0].difficulty} · ${PROJECTS[0].cost} · ${PROJECTS[0].buildTime}</div>
+          <div class="desc">${PROJECTS[0].description}</div>
+          <div class="flex"><span class="pill">${PROJECTS[0].boards.join(' · ')}</span></div>
+        </div>
+
+        <!-- featured projects -->
+        <h2 class="mt-2">✨ Featured Projects</h2>
+        <div class="grid-2">
+          ${PROJECTS.map(p => `
+            <div class="card project-card" data-project-id="${p.id}" style="cursor:pointer;">
+              <div style="font-size:2.4rem;">${p.image}</div>
+              <div class="title">${p.name}</div>
+              <div class="meta">${p.difficulty} · ${p.cost}</div>
+              <div class="desc">${p.description}</div>
+              <span class="pill">${p.category}</span>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- tutorials preview -->
+        <h2 class="mt-2">📘 Latest Tutorials</h2>
+        <div class="grid-3">
+          ${TUTORIALS.map(t => `
+            <div class="card" style="cursor:default;">
+              <h3 style="font-size:1.2rem;">${t.title}</h3>
+              <p style="opacity:0.7;">${t.desc}</p>
+              <a href="#" data-page="tutorials">Read →</a>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- boards -->
+        <h2 class="mt-2">🔌 Supported Boards</h2>
+        <div class="flex" style="justify-content:center;">
+          ${BOARDS.map(b => `<span class="pill" style="font-size:1rem;">${b.name}</span>`).join('')}
+        </div>
+        <div style="text-align:center;margin-top:0.8rem;"><a href="#" data-page="boards">View all boards →</a></div>
+
+        <!-- newsletter -->
+        <div class="glass" style="padding:2rem;margin:2.5rem 0;text-align:center;">
+          <h3 style="font-weight:400;">📬 Join the maker newsletter</h3>
+          <p style="opacity:0.7;">Get project updates, tutorials, and more.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:0.8rem;">
+            <input type="email" placeholder="your@email.com" style="padding:0.6rem 1.2rem;border-radius:60px;border:none;background:#1a1f26;color:#fff;min-width:200px;" />
+            <button style="background:#5b9eff;border:none;padding:0.6rem 1.8rem;border-radius:60px;font-weight:600;cursor:pointer;">Subscribe</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProjects() {
+      return `
+        <h2 class="mt-2">All Projects</h2>
+        <div class="grid-2">
+          ${PROJECTS.map(p => `
+            <div class="card project-card" data-project-id="${p.id}" style="cursor:pointer;">
+              <div style="font-size:2.4rem;">${p.image}</div>
+              <div class="title">${p.name}</div>
+              <div class="meta">${p.difficulty} · ${p.cost} · ${p.buildTime}</div>
+              <div class="desc">${p.description}</div>
+              <span class="pill">${p.category}</span>
+              <div style="margin-top:0.6rem;"><span class="pill">${p.boards.join(' · ')}</span></div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderProjectDetail(id) {
+      const p = PROJECTS.find(pr => pr.id === id);
+      if (!p) return render404();
+      return `
+        <div class="card" style="margin-top:1.5rem;">
+          <div style="font-size:4rem;">${p.image}</div>
+          <h2>${p.name}</h2>
+          <div class="flex"><span class="pill">${p.difficulty}</span><span class="pill">${p.cost}</span><span class="pill">${p.buildTime}</span></div>
+          <p style="font-size:1.1rem;margin:1rem 0;">${p.description}</p>
+          <div><strong>Boards:</strong> ${p.boards.join(', ')}</div>
+          <div><strong>Components:</strong> ${p.components.join(', ')}</div>
+          <div><strong>Category:</strong> ${p.category}</div>
+          <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.8rem;">
+            <a href="${p.github}" target="_blank" class="pill" style="background:#1a1f26;">GitHub</a>
+            <a href="#" class="pill">📄 PDF Guide</a>
+            <a href="#" class="pill">📦 ZIP Package</a>
+            <a href="#" class="pill">🔌 Wiring Diagram</a>
+          </div>
+          <div style="margin-top:1.2rem;background:rgba(255,255,255,0.03);padding:1rem;border-radius:1.2rem;">
+            <p><strong>📘 Documentation</strong> — Full build guide, pinout, and code examples.</p>
+            <p><strong>❓ FAQ</strong> · <strong>⚠️ Troubleshooting</strong> · <strong>📋 Changelog</strong></p>
+          </div>
+          <div style="margin-top:1rem;"><a href="#" data-page="projects">← Back to projects</a></div>
+        </div>
+      `;
+    }
+
+    function renderTutorials() {
+      return `<h2 class="mt-2">📘 Tutorials</h2><div class="grid-2">${TUTORIALS.map(t => `<div class="card"><h3>${t.title}</h3><p>${t.desc}</p><span class="pill">read more</span></div>`).join('')}</div>`;
+    }
+
+    function renderBoards() {
+      return `<h2 class="mt-2">🔌 Supported Boards</h2><div class="grid-2">${BOARDS.map(b => `<div class="card"><h3>${b.name}</h3><span class="pill">${b.status}</span><div class="flex" style="margin-top:0.5rem;"><a href="#">Docs</a><a href="#">Download</a><a href="#">GitHub</a></div></div>`).join('')}</div>`;
+    }
+
+    function renderComponents() {
+      return `<h2 class="mt-2">🧩 Components Library</h2><div class="flex" style="justify-content:center;">${COMPONENTS.map(c => `<span class="pill" style="font-size:1.1rem;">${c}</span>`).join('')}</div>`;
+    }
+
+    function renderAbout() { return `<div class="card" style="margin-top:2rem;"><h2>About Future Maker</h2><p>We build open source hardware projects for everyone. From beginners to experts.</p></div>`; }
+    function renderContact() { return `<div class="card" style="margin-top:2rem;"><h2>Contact</h2><p>📧 hello@futuremaker.dev</p><p>🐦 @futuremaker</p></div>`; }
+    function renderDownloads() { return `<h2 class="mt-2">⬇️ Downloads</h2><div class="grid-2">${PROJECTS.map(p => `<div class="card"><h3>${p.name}</h3><div class="flex"><a href="#">Source</a><a href="#">PDF</a><a href="#">Wiring</a></div></div>`).join('')}</div>`; }
+
+    function renderSearch(q) {
+      if (!q) return renderHome();
+      const results = PROJECTS.filter(p => p.name.toLowerCase().includes(q.toLowerCase()) || p.description.toLowerCase().includes(q.toLowerCase()) || p.boards.some(b => b.toLowerCase().includes(q.toLowerCase())) || p.components.some(c => c.toLowerCase().includes(q.toLowerCase())));
+      if (!results.length) return `<div class="not-found"><h2>🔍 No results for “${q}”</h2><p>Try a different keyword.</p><a href="#" data-page="home">← Home</a></div>`;
+      return `<h2 class="mt-2">Results for “${q}”</h2><div class="grid-2">${results.map(p => `<div class="card project-card" data-project-id="${p.id}" style="cursor:pointer;"><div style="font-size:2rem;">${p.image}</div><div class="title">${p.name}</div><div class="desc">${p.description}</div></div>`).join('')}</div>`;
+    }
+
+    function render404() { return `<div class="not-found"><h2>🚀 404</h2><p>Page not found.</p><a href="#" data-page="home">← Home</a></div>`; }
+
+    // ---------- init navigation ----------
+    document.addEventListener('DOMContentLoaded', function() {
+      // global click on data-page links
+      document.querySelectorAll('[data-page]').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const p = el.dataset.page;
+          if (p === 'search') {
+            const q = document.getElementById('search-input')?.value;
+            if (q) navigate('search', { q });
+          } else {
+            navigate(p);
+          }
+        });
+      });
+      // default home
+      navigate('home');
+    });
+
+    // expose navigate for inline onclick (if needed)
+    window.navigate = navigate;
+
+  })();
+</script>
+</body>
+</html>
