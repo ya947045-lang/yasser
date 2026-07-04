@@ -3,242 +3,1742 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Future Maker - Build the Future</title>
-    <meta name="description" content="The largest open source hardware community. 20+ projects, tutorials, and components." />
+    <title>Future Maker · Build the future</title>
+    <meta name="description" content="Open source hardware projects for makers. Build, learn, and share." />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Future Maker" />
-    <meta property="og:description" content="Build the future with open source electronics." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    
-    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* ============================================================
+           CSS VARIABLES
+           ============================================================ */
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --text: #f5f7fa;
+            --text-secondary: #8e9bb5;
+            --text-muted: #5a6a85;
+            --accent: #4f8cff;
+            --accent-glow: rgba(79, 140, 255, 0.25);
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(79, 140, 255, 0.2);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 18px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: #6fa0ff;
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4f8cff, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 8px 32px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: #6fa0ff;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 48px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.8rem 0;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a.active {
+            color: var(--text);
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -20%;
+            width: 70%;
+            height: 80%;
+            background: radial-gradient(ellipse, rgba(79, 140, 255, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(79, 140, 255, 0.1);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            border: 1px solid rgba(79, 140, 255, 0.1);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        /* ============================================================
+           STATS
+           ============================================================ */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4f8cff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ============================================================
+           SEARCH
+           ============================================================ */
+        .search-section {
+            padding: 2rem 0 4rem;
+        }
+
+        .search-box {
+            max-width: 680px;
+            margin: 0 auto;
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 60px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .search-box:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px rgba(79, 140, 255, 0.06);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1.2rem 1.8rem;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 1.05rem;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-box button {
+            padding: 1.2rem 2.5rem;
+            background: var(--accent);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-box button:hover {
+            background: #6fa0ff;
+        }
+
+        /* ============================================================
+           SECTION HEADER
+           ============================================================ */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* ============================================================
+           PROJECTS GRID
+           ============================================================ */
+        .projects-section {
+            padding: 4rem 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(79, 140, 255, 0.02), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card .icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .project-card .desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-card .tag {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .project-card .tag.accent {
+            color: var(--accent);
+            border-color: rgba(79, 140, 255, 0.15);
+            background: rgba(79, 140, 255, 0.06);
+        }
+
+        .project-card .boards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+        }
+
+        .project-card .board-tag {
+            background: rgba(79, 140, 255, 0.06);
+            padding: 0.15rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: var(--accent);
+            border: 1px solid rgba(79, 140, 255, 0.08);
+        }
+
+        .project-card .view-link {
+            display: inline-block;
+            margin-top: 1.2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--accent);
+        }
+
+        .project-card .view-link::after {
+            content: ' →';
+            transition: var(--transition);
+        }
+
+        .project-card:hover .view-link::after {
+            transform: translateX(4px);
+        }
+
+        /* ============================================================
+           TUTORIALS
+           ============================================================ */
+        .tutorials-section {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.015);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .tutorial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .tutorial-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .tutorial-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .tutorial-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .tutorial-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================================
+           BOARDS
+           ============================================================ */
+        .boards-section {
+            padding: 4rem 0;
+        }
+
+        .boards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .board-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .board-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .board-card .icon {
+            font-size: 2.5rem;
+        }
+
+        .board-card h4 {
+            font-size: 1.1rem;
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        .board-card .status {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.8rem;
+            border-radius: 50px;
+            background: rgba(79, 140, 255, 0.08);
+            color: var(--accent);
+            border: 1px solid rgba(79, 140, 255, 0.08);
+        }
+
+        /* ============================================================
+           COMPONENTS
+           ============================================================ */
+        .components-section {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.015);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .components-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .component-tag {
+            background: var(--bg-card);
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .component-tag:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           ABOUT
+           ============================================================ */
+        .about-section {
+            padding: 4rem 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .about-item:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .about-item .icon {
+            font-size: 2.8rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+
+        .about-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .about-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+           NEWSLETTER
+           ============================================================ */
+        .newsletter-section {
+            padding: 4rem 0;
+        }
+
+        .newsletter-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .newsletter-card h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.8rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.8rem;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.9rem 1.4rem;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--accent);
+        }
+
+        .newsletter-form button {
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            background: #6fa0ff;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        footer {
+            padding: 3rem 0 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--text);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.2rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 4rem 0 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tutorials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .boards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .newsletter-card {
+                padding: 2rem 1.2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .search-box {
+                flex-direction: column;
+                border-radius: var(--radius);
+            }
+
+            .search-box input {
+                padding: 1rem 1.4rem;
+            }
+
+            .search-box button {
+                padding: 1rem;
+                border-radius: 0 0 var(--radius) var(--radius);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .boards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* ============================================================
+           PROJECT DETAIL PAGE STYLES (injected via JS)
+           ============================================================ */
+        .project-detail-hero {
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .project-detail-hero .icon {
+            font-size: 6rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-detail-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-detail-hero .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .project-detail-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.2rem;
+            max-width: 650px;
+            margin: 2rem auto;
+            background: var(--bg-card);
+            padding: 1.8rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .project-detail-meta .meta-item {
+            text-align: center;
+        }
+
+        .project-detail-meta .meta-item .label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-detail-meta .meta-item .value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .project-detail-content {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .project-detail-content h2 {
+            font-size: 2rem;
+            margin: 2.5rem 0 1rem;
+            font-weight: 700;
+        }
+
+        .project-detail-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .project-detail-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-detail-content ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.6rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .project-detail-content ul li {
+            background: var(--bg-card);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            text-align: center;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .project-detail-content .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .project-detail-content .download-item {
+            background: var(--bg-card);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .project-detail-content .download-item:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+        }
+
+        .project-detail-content .download-item .dl-icon {
+            font-size: 1.8rem;
+            display: block;
+        }
+
+        .project-detail-content .download-item .dl-name {
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            color: var(--text-secondary);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 1.5rem 0;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .back-link::before {
+            content: '← ';
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .project-detail-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .project-detail-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .project-detail-meta {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .project-detail-content ul {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-detail-content ul {
+                grid-template-columns: 1fr;
+            }
+
+            .project-detail-content .download-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- ===== HEADER ===== -->
-    <header class="header">
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header>
         <div class="container">
-            <div class="header-content">
+            <div class="header-inner">
                 <div class="logo">
                     <span class="logo-icon">🚀</span>
-                    <span class="logo-text">Future Maker</span>
+                    Future Maker
                 </div>
-                <nav class="main-nav">
-                    <a href="index.html" class="active">Home</a>
-                    <a href="index.html#projects">Projects</a>
-                    <a href="index.html#tutorials">Tutorials</a>
-                    <a href="index.html#boards">Boards</a>
-                    <a href="index.html#components">Components</a>
-                    <a href="index.html#about">About</a>
+                <nav id="mainNav">
+                    <a href="#" data-page="home" class="active">Home</a>
+                    <a href="#" data-page="projects">Projects</a>
+                    <a href="#" data-page="tutorials">Tutorials</a>
+                    <a href="#" data-page="boards">Boards</a>
+                    <a href="#" data-page="components">Components</a>
+                    <a href="#" data-page="about">About</a>
                 </nav>
                 <button class="menu-toggle" id="menuToggle">☰</button>
             </div>
         </div>
     </header>
 
-    <!-- ===== MAIN CONTENT ===== -->
-    <main>
-        <!-- ===== HERO SECTION - MASSIVE ===== -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-badge">🔥 20+ Open Source Projects</div>
-                    <h1 class="hero-title">
-                        Build the <span class="gradient-text">Future</span><br />
-                        With Your Own Hands
-                    </h1>
-                    <p class="hero-subtitle">
-                        The largest collection of open source hardware projects, tutorials, 
-                        and components for makers of all skill levels.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#projects" class="btn btn-primary">Explore Projects</a>
-                        <a href="#tutorials" class="btn btn-secondary">Watch Tutorials</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number" id="projectCount">0</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="boardCount">0</span>
-                            <span class="stat-label">Boards</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="componentCount">0</span>
-                            <span class="stat-label">Components</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="tutorialCount">0</span>
-                            <span class="stat-label">Tutorials</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== SEARCH SECTION ===== -->
-        <section class="search-section">
-            <div class="container">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search 20+ projects, boards, components..." />
-                    <button id="searchBtn">🔍 Search</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== FEATURED PROJECTS ===== -->
-        <section id="projects" class="projects-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>🔥 Featured Projects</h2>
-                    <p class="section-subtitle">Hand-picked projects to inspire your next build</p>
-                </div>
-                <div class="projects-grid" id="featuredProjects">
-                    <!-- Loaded by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== ALL PROJECTS ===== -->
-        <section class="projects-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>📦 All Projects</h2>
-                    <p class="section-subtitle">Browse our complete collection of 20+ projects</p>
-                </div>
-                <div class="projects-grid" id="allProjects">
-                    <!-- Loaded by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== TUTORIALS ===== -->
-        <section id="tutorials" class="tutorials-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>📘 Tutorials</h2>
-                    <p class="section-subtitle">Step-by-step guides to help you build</p>
-                </div>
-                <div class="tutorials-grid" id="tutorialsList">
-                    <!-- Loaded by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== BOARDS ===== -->
-        <section id="boards" class="boards-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>🔌 Supported Boards</h2>
-                    <p class="section-subtitle">All boards supported by our projects</p>
-                </div>
-                <div class="boards-grid" id="boardsList">
-                    <!-- Loaded by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== COMPONENTS ===== -->
-        <section id="components" class="components-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>🧩 Components Library</h2>
-                    <p class="section-subtitle">Every component used in our projects</p>
-                </div>
-                <div class="components-list" id="componentsList">
-                    <!-- Loaded by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== ABOUT ===== -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <div class="about-content">
-                    <h2>About Future Maker</h2>
-                    <p>
-                        Future Maker is a community-driven platform dedicated to open source 
-                        hardware and software. We believe in learning by building, sharing 
-                        knowledge, and creating a better future through technology.
-                    </p>
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <span class="feature-icon">🌍</span>
-                            <h4>Global Community</h4>
-                            <p>Connect with makers from around the world</p>
-                        </div>
-                        <div class="about-feature">
-                            <span class="feature-icon">📚</span>
-                            <h4>Free Resources</h4>
-                            <p>All tutorials and guides are completely free</p>
-                        </div>
-                        <div class="about-feature">
-                            <span class="feature-icon">🛠️</span>
-                            <h4>Open Source</h4>
-                            <p>All projects are open source and modifiable</p>
-                        </div>
-                        <div class="about-feature">
-                            <span class="feature-icon">🎓</span>
-                            <h4>Learn by Doing</h4>
-                            <p>Hands-on projects for all skill levels</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== NEWSLETTER ===== -->
-        <section class="newsletter-section">
-            <div class="container">
-                <div class="newsletter-card">
-                    <h2>📬 Join the Future Maker Newsletter</h2>
-                    <p>Get weekly project updates, tutorials, and maker tips</p>
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="your@email.com" />
-                        <button class="btn btn-primary">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main id="mainContent">
+        <!-- Rendered by JavaScript -->
     </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>🚀 Future Maker</h4>
-                    <p>Building the future with open source hardware and software.</p>
+                    <p>Open source hardware projects for makers. Build, learn, and share with the community.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="index.html#projects">Projects</a>
-                    <a href="index.html#tutorials">Tutorials</a>
-                    <a href="index.html#boards">Boards</a>
+                    <h4>Explore</h4>
+                    <a href="#" data-page="projects">Projects</a>
+                    <a href="#" data-page="tutorials">Tutorials</a>
+                    <a href="#" data-page="boards">Boards</a>
+                    <a href="#" data-page="components">Components</a>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
-                    <a href="index.html#components">Components</a>
-                    <a href="index.html#about">About</a>
-                    <a href="#">Contact</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
+                    <a href="#" data-page="about">About</a>
                     <a href="#">GitHub</a>
                     <a href="#">Twitter</a>
                     <a href="#">YouTube</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
                     <a href="#">Discord</a>
+                    <a href="#">Forum</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Newsletter</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Future Maker. Made with ❤️ by the community.</p>
+                &copy; 2026 Future Maker. Made with ❤️ by makers everywhere.
             </div>
         </div>
     </footer>
 
-    <script src="js/app.js"></script>
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // DATA (loaded from projects.json)
+        // ============================================================
+        let PROJECTS = [];
+        let TUTORIALS = [];
+        let BOARDS = [];
+        let COMPONENTS = [];
+
+        // ============================================================
+        // LOAD DATA
+        // ============================================================
+        async function loadData() {
+            try {
+                const res = await fetch('projects.json');
+                const data = await res.json();
+                PROJECTS = data.projects || [];
+                TUTORIALS = data.tutorials || [];
+                BOARDS = data.boards || [];
+                COMPONENTS = data.components || [];
+            } catch (e) {
+                console.warn('Using fallback data');
+                // Fallback data
+                PROJECTS = [
+                    { id: 'esp32-weather', name: 'ESP32 Weather Station', description: 'Monitor temperature, humidity, and pressure.', difficulty: 'Intermediate', cost: '$45', buildTime: '2h', boards: ['ESP32 DevKit'], components: ['DHT22', 'BMP280'], image: '🌦️', category: 'IoT', github: '#' },
+                    { id: 'pico-robot', name: 'Pico Robot Arm', description: '6-axis robotic arm with Bluetooth control.', difficulty: 'Advanced', cost: '$145', buildTime: '8h', boards: ['Raspberry Pi Pico'], components: ['Servo x6', 'HC-05'], image: '🦾', category: 'Robotics', github: '#' },
+                    { id: 'pro-micro-keypad', name: 'Pro Micro Keypad', description: 'Programmable keypad with OLED display.', difficulty: 'Beginner', cost: '$55', buildTime: '3h', boards: ['Arduino Pro Micro'], components: ['Cherry MX', 'Rotary Encoder'], image: '⌨️', category: 'Input', github: '#' },
+                ];
+                TUTORIALS = [
+                    { id: 'tut1', title: 'Getting Started with ESP32', description: 'Learn the basics of ESP32 programming.', icon: '📘' },
+                    { id: 'tut2', title: 'Arduino for Beginners', description: 'Start your journey with Arduino.', icon: '📗' },
+                ];
+                BOARDS = [
+                    { name: 'ESP32 DevKit', status: 'Stable', icon: '🔵' },
+                    { name: 'Arduino Pro Micro', status: 'Stable', icon: '🔴' },
+                    { name: 'Raspberry Pi Pico', status: 'Stable', icon: '🟢' },
+                ];
+                COMPONENTS = ['DHT22', 'BMP280', 'Servo Motor', 'OLED Display', 'HC-05', 'Cherry MX'];
+            }
+            renderPage('home');
+        }
+
+        // ============================================================
+        // RENDER ENGINE
+        // ============================================================
+        function renderPage(page, params) {
+            const main = document.getElementById('mainContent');
+            let html = '';
+
+            switch (page) {
+                case 'home':
+                    html = renderHome();
+                    break;
+                case 'projects':
+                    html = renderProjects();
+                    break;
+                case 'project-detail':
+                    html = renderProjectDetail(params);
+                    break;
+                case 'tutorials':
+                    html = renderTutorials();
+                    break;
+                case 'boards':
+                    html = renderBoards();
+                    break;
+                case 'components':
+                    html = renderComponents();
+                    break;
+                case 'about':
+                    html = renderAbout();
+                    break;
+                case 'search':
+                    html = renderSearch(params);
+                    break;
+                default:
+                    html = renderNotFound();
+            }
+
+            main.innerHTML = html;
+            updateActiveNav(page);
+
+            // Re-bind search
+            const searchForm = document.getElementById('searchForm');
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const input = this.querySelector('input');
+                    if (input && input.value.trim()) {
+                        renderPage('search', input.value.trim());
+                    }
+                });
+            }
+
+            // Re-bind project clicks
+            document.querySelectorAll('.project-card[data-id]').forEach(el => {
+                el.addEventListener('click', function() {
+                    renderPage('project-detail', this.dataset.id);
+                });
+            });
+
+            // Re-bind nav clicks inside main
+            document.querySelectorAll('[data-page]').forEach(el => {
+                el.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const p = this.dataset.page;
+                    if (p) renderPage(p);
+                });
+            });
+        }
+
+        // ============================================================
+        // PAGE RENDERERS
+        // ============================================================
+
+        // ---- HOME ----
+        function renderHome() {
+            const featured = PROJECTS.slice(0, 6);
+            return `
+                <section class="hero">
+                    <div class="container">
+                        <div class="hero-badge">🔥 20+ Open Source Projects</div>
+                        <h1>Build the <span class="gradient-text">Future</span></h1>
+                        <p>Open source hardware projects, tutorials, and components for makers of all skill levels.</p>
+                        <div class="hero-actions">
+                            <a href="#" data-page="projects" class="btn btn-primary">Explore Projects</a>
+                            <a href="#" data-page="tutorials" class="btn btn-secondary">Watch Tutorials</a>
+                        </div>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-number" id="statProjects">${PROJECTS.length}</span>
+                                <span class="stat-label">Projects</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="statBoards">${BOARDS.length}</span>
+                                <span class="stat-label">Boards</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="statComponents">${COMPONENTS.length}</span>
+                                <span class="stat-label">Components</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="statTutorials">${TUTORIALS.length}</span>
+                                <span class="stat-label">Tutorials</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="search-section">
+                    <div class="container">
+                        <form class="search-box" id="searchForm">
+                            <input type="text" placeholder="Search projects, boards, components..." />
+                            <button type="submit">🔍 Search</button>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="projects-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>🔥 Featured Projects</h2>
+                            <p>Hand-picked projects to inspire your next build</p>
+                        </div>
+                        <div class="projects-grid">
+                            ${featured.map(p => renderProjectCard(p)).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tutorials-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>📘 Latest Tutorials</h2>
+                            <p>Step-by-step guides to help you build</p>
+                        </div>
+                        <div class="tutorials-grid">
+                            ${TUTORIALS.slice(0, 4).map(t => `
+                                <div class="tutorial-card">
+                                    <span class="icon">${t.icon || '📘'}</span>
+                                    <h4>${t.title}</h4>
+                                    <p>${t.description}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="boards-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>🔌 Supported Boards</h2>
+                            <p>All boards supported by our projects</p>
+                        </div>
+                        <div class="boards-grid">
+                            ${BOARDS.slice(0, 8).map(b => `
+                                <div class="board-card">
+                                    <span class="icon">${b.icon || '🔌'}</span>
+                                    <h4>${b.name}</h4>
+                                    <span class="status">${b.status || 'Stable'}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="components-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>🧩 Components Library</h2>
+                            <p>Every component used in our projects</p>
+                        </div>
+                        <div class="components-list">
+                            ${COMPONENTS.slice(0, 20).map(c => `
+                                <span class="component-tag">${c}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="about-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>About Future Maker</h2>
+                            <p>Building the future together</p>
+                        </div>
+                        <div class="about-grid">
+                            <div class="about-item">
+                                <span class="icon">🌍</span>
+                                <h4>Global Community</h4>
+                                <p>Connect with makers from around the world</p>
+                            </div>
+                            <div class="about-item">
+                                <span class="icon">📚</span>
+                                <h4>Free Resources</h4>
+                                <p>All tutorials and guides are completely free</p>
+                            </div>
+                            <div class="about-item">
+                                <span class="icon">🛠️</span>
+                                <h4>Open Source</h4>
+                                <p>All projects are open source and modifiable</p>
+                            </div>
+                            <div class="about-item">
+                                <span class="icon">🎓</span>
+                                <h4>Learn by Doing</h4>
+                                <p>Hands-on projects for all skill levels</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="newsletter-section">
+                    <div class="container">
+                        <div class="newsletter-card">
+                            <h2>📬 Join the Newsletter</h2>
+                            <p>Get weekly project updates, tutorials, and maker tips</p>
+                            <form class="newsletter-form">
+                                <input type="email" placeholder="your@email.com" />
+                                <button type="submit">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // ---- PROJECT CARD ----
+        function renderProjectCard(p) {
+            return `
+                <div class="project-card" data-id="${p.id}">
+                    <span class="icon">${p.image || '📦'}</span>
+                    <h3>${p.name}</h3>
+                    <p class="desc">${p.description}</p>
+                    <div class="tags">
+                        <span class="tag">${p.difficulty || 'Beginner'}</span>
+                        <span class="tag">${p.cost || 'Free'}</span>
+                        <span class="tag">${p.buildTime || '1h'}</span>
+                        <span class="tag accent">${p.category || 'General'}</span>
+                    </div>
+                    <div class="boards">
+                        ${(p.boards || []).map(b => `<span class="board-tag">${b}</span>`).join('')}
+                    </div>
+                    <span class="view-link">View Project</span>
+                </div>
+            `;
+        }
+
+        // ---- PROJECTS PAGE ----
+        function renderProjects() {
+            return `
+                <section style="padding:3rem 0;">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>📦 All Projects</h2>
+                            <p>Browse our complete collection of ${PROJECTS.length} projects</p>
+                        </div>
+                        <div class="projects-grid">
+                            ${PROJECTS.map(p => renderProjectCard(p)).join('')}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // ---- PROJECT DETAIL ----
+        function renderProjectDetail(id) {
+            const p = PROJECTS.find(pr => pr.id === id);
+            if (!p) return renderNotFound();
+
+            return `
+                <div class="container">
+                    <a href="#" data-page="projects" class="back-link">Back to Projects</a>
+                    <div class="project-detail-hero">
+                        <span class="icon">${p.image || '📦'}</span>
+                        <h1>${p.name}</h1>
+                        <p class="subtitle">${p.description}</p>
+                    </div>
+
+                    <div class="project-detail-meta">
+                        <div class="meta-item">
+                            <div class="label">Difficulty</div>
+                            <div class="value">${p.difficulty || 'Beginner'}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="label">Cost</div>
+                            <div class="value">${p.cost || 'Free'}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="label">Build Time</div>
+                            <div class="value">${p.buildTime || '1h'}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="label">Category</div>
+                            <div class="value">${p.category || 'General'}</div>
+                        </div>
+                    </div>
+
+                    <div class="project-detail-content">
+                        <h2>📋 Overview</h2>
+                        <p>${p.description}</p>
+                        <p>This project is designed for makers who want to build something amazing. All source code and schematics are available on GitHub.</p>
+
+                        <h2>🔌 Supported Boards</h2>
+                        <ul>
+                            ${(p.boards || []).map(b => `<li>${b}</li>`).join('')}
+                        </ul>
+
+                        <h2>🧩 Required Components</h2>
+                        <ul>
+                            ${(p.components || []).map(c => `<li>${c}</li>`).join('')}
+                        </ul>
+
+                        <h2>📦 Downloads</h2>
+                        <div class="download-grid">
+                            <div class="download-item">
+                                <span class="dl-icon">📦</span>
+                                <span class="dl-name">Source Code</span>
+                            </div>
+                            <div class="download-item">
+                                <span class="dl-icon">📄</span>
+                                <span class="dl-name">PDF Guide</span>
+                            </div>
+                            <div class="download-item">
+                                <span class="dl-icon">🔌</span>
+                                <span class="dl-name">Wiring Diagram</span>
+                            </div>
+                            <div class="download-item">
+                                <span class="dl-icon">📚</span>
+                                <span class="dl-name">Libraries</span>
+                            </div>
+                            <div class="download-item">
+                                <span class="dl-icon">📋</span>
+                                <span class="dl-name">Datasheet</span>
+                            </div>
+                            <div class="download-item">
+                                <span class="dl-icon">🗜️</span>
+                                <span class="dl-name">ZIP Package</span>
+                            </div>
+                        </div>
+
+                        <h2>🔗 Links</h2>
+                        <ul>
+                            <li><a href="${p.github || '#'}" target="_blank">GitHub Repository</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Troubleshooting</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+
+                        <h2>📘 Related Projects</h2>
+                        <ul>
+                            ${PROJECTS.filter(pr => pr.id !== p.id).slice(0, 4).map(pr => `
+                                <li><a href="#" data-page="project-detail" data-id="${pr.id}">${pr.name}</a></li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ---- TUTORIALS ----
+        function renderTutorials() {
+            return `
+                <section style="padding:3rem 0;">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>📘 Tutorials</h2>
+                            <p>Step-by-step guides for makers</p>
+                        </div>
+                        <div class="tutorials-grid">
+                            ${TUTORIALS.map(t => `
+                                <div class="tutorial-card">
+                                    <span class="icon">${t.icon || '📘'}</span>
+                                    <h4>${t.title}</h4>
+                                    <p>${t.description}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // ---- BOARDS ----
+        function renderBoards() {
+            return `
+                <section style="padding:3rem 0;">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>🔌 Supported Boards</h2>
+                            <p>All boards supported by our projects</p>
+                        </div>
+                        <div class="boards-grid">
+                            ${BOARDS.map(b => `
+                                <div class="board-card">
+                                    <span class="icon">${b.icon || '🔌'}</span>
+                                    <h4>${b.name}</h4>
+                                    <span class="status">${b.status || 'Stable'}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // ---- COMPONENTS ----
+        function renderComponents() {
+            return `
+                <section style="padding:3rem 0;">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>🧩 Components Library</h2>
+                            <p>Every component used in our projects</p>
+                        </div>
+                        <div class="components-list">
+                            ${COMPONENTS.map(c => `
+                                <span class="component-tag">${c}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // ---- ABOUT ----
+        function renderAbout() {
+            return `
+                <section style="padding:3rem 0;">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>About Future Maker</h2>
+                            <p>Building the future together</p>
+                        </div>
+                        <div style="max-width:800px;margin:0 auto;text-align:center;">
+                            <p style="color:var(--text-secondary);font-size:1.1rem;line-height:2;margin-bottom:2rem;">
+                                Future Maker is a community-driven platform dedicated to open source hardware and software. 
+                                We believe in learning by building, sharing knowledge, and creating a better future through technology.
+                            </p>
+                            <div class="about-grid">
+                                <div class="about-item">
+                                    <span class="icon">🌍</span>
+                                    <h4>Global Community</h4>
+                                    <p>Connect with makers from around the world</p>
+                                </div>
+                                <div class="about-item">
+                                    <span class="icon">📚</span>
+                                    <h4>Free Resources</h4>
+                                    <p>All tutorials and guides are completely free</p>
+                                </div>
+                                <div class="about-item">
+                                    <span class="icon">🛠️</span>
+                                    <h4>Open Source</h4>
+                                    <p>All projects are open source and modifiable</p>
+                                </div>
+                                <div class="about-item">
+                                    <span class="icon">🎓</span>
+                                    <h4>Learn by Doing</h4>
+                                    <p>Hands-on projects for all skill levels</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // ---- SEARCH ----
+        function renderSearch(query) {
+            if (!query || !query.trim()) return renderHome();
+
+            const q = query.toLowerCase().trim();
+            const results = PROJECTS.filter(p =>
+                p.name.toLowerCase().includes(q) ||
+                p.description.toLowerCase().includes(q) ||
+                (p.boards || []).some(b => b.toLowerCase().includes(q)) ||
+                (p.components || []).some(c => c.toLowerCase().includes(q)) ||
+                (p.category || '').toLowerCase().includes(q)
+            );
+
+            if (results.length === 0) {
+                return `
+                    <section style="padding:4rem 0;text-align:center;">
+                        <div class="container">
+                            <h2 style="font-size:3rem;margin-bottom:1rem;">🔍</h2>
+                            <h3 style="font-size:2rem;margin-bottom:0.5rem;">No results found</h3>
+                            <p style="color:var(--text-secondary);font-size:1.1rem;">Try searching for a different keyword</p>
+                            <a href="#" data-page="home" style="display:inline-block;margin-top:1.5rem;font-weight:600;">← Back to Home</a>
+                        </div>
+                    </section>
+                `;
+            }
+
+            return `
+                <section style="padding:3rem 0;">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>🔍 Results for "${query}"</h2>
+                            <p>Found ${results.length} project${results.length > 1 ? 's' : ''}</p>
+                        </div>
+                        <div class="projects-grid">
+                            ${results.map(p => renderProjectCard(p)).join('')}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // ---- NOT FOUND ----
+        function renderNotFound() {
+            return `
+                <section style="padding:4rem 0;text-align:center;">
+                    <div class="container">
+                        <h2 style="font-size:4rem;margin-bottom:0.5rem;">🚀</h2>
+                        <h3 style="font-size:2rem;margin-bottom:0.5rem;">404</h3>
+                        <p style="color:var(--text-secondary);font-size:1.1rem;">Page not found</p>
+                        <a href="#" data-page="home" style="display:inline-block;margin-top:1.5rem;font-weight:600;">← Back to Home</a>
+                    </div>
+                </section>
+            `;
+        }
+
+        // ============================================================
+        // NAVIGATION HELPERS
+        // ============================================================
+        function updateActiveNav(page) {
+            document.querySelectorAll('nav a').forEach(a => {
+                a.classList.toggle('active', a.dataset.page === page);
+            });
+        }
+
+        // ============================================================
+        // MOBILE MENU
+        // ============================================================
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+                nav.style.flexDirection = '';
+                nav.style.position = '';
+                nav.style.top = '';
+                nav.style.left = '';
+                nav.style.right = '';
+                nav.style.background = '';
+                nav.style.padding = '';
+                nav.style.gap = '';
+                nav.style.borderBottom = '';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.background = '#0a0a0f';
+                nav.style.padding = '2rem';
+                nav.style.gap = '1.5rem';
+                nav.style.borderBottom = '1px solid var(--border)';
+                nav.style.zIndex = '99';
+            }
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', loadData);
+
+        // Expose renderPage for inline clicks
+        window.renderPage = renderPage;
+    </script>
+
 </body>
 </html>
