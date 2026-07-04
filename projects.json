@@ -1,17 +1,27 @@
 {
   "projects": [
     {
-      "id": "esp32-weather",
-      "name": "ESP32 Weather Station Pro",
-      "description": "Complete weather station with OLED display, multiple sensors, and web dashboard. Measures temperature, humidity, pressure, air quality, and wind speed.",
+      "id": "opensim-wheel",
+      "name": "DIY Sim Racing Wheel",
+      "description": "A DIY USB sim racing wheel built using an ESP32-S3 with native USB HID support. The project features analog steering and throttle control, programmable buttons, and a lightweight handmade chassis, making it an affordable and customizable controller for PC racing games.",
       "difficulty": "Intermediate",
-      "cost": "$89",
+      "cost": "$00",
       "buildTime": "4h",
-      "boards": ["ESP32 DevKit V1", "ESP32-S3 UNO"],
-      "components": ["DHT22", "BMP280", "OLED 128x64", "MQ-135", "Anemometer", "Rain Sensor"],
-      "image": "🌦️",
-      "category": "IoT",
-      "github": "https://github.com/ya947045-lang/projectis/blob/main/esp32_weather_station.ino"
+      "boards": [
+  "ESP32-S3 UNO",
+  "ESP32-S3 DevKitC-1",
+  "ESP32-S3 DevKitM-1",
+  "ESP32-S3 Super Mini",
+  "ESP32-S3 Zero",
+  "ESP32-S3 WROOM",
+  "ESP32-S3 WROVER",
+  "ESP32-S2 Saola-1",
+  "ESP32-S2 Mini"
+]
+      "components": ["2 × 10KΩ Potentiometers", "7 × Push Buttons", "USB Type-C Cable", "USB Data Cable (for Native USB HID)", "Jumper Wires", "Breadboard (Optional)"],
+      "image": "🕹️",
+      "category": "Gamepad",
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/DIY%20Sim%20Racing%20Wheel.ino"
     },
     {
       "id": "pico-robot",
