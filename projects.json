@@ -4,14 +4,14 @@
     {
       "id": "esp32-weather",
       "name": "DIY Sim Racing Wheel",
-      "description": "Complete weather station with OLED display, multiple sensors, and web dashboard. Measures temperature, humidity, pressure, air quality, and wind speed.",
+      "description": "A DIY USB sim racing wheel built using an ESP32-S3 with native USB HID support. The project features analog steering and throttle control, programmable buttons, and a lightweight handmade chassis, making it an affordable and customizable controller for PC racing games.",
       "difficulty": "Intermediate",
       "cost": "$89",
       "buildTime": "4h",
       "boards": [ "ESP32-S3 UNO"],
-      "components": ["DHT22", "BMP280", "OLED 128x64", "MQ-135", "Anemometer", "Rain Sensor"],
-      "image": "🌦️",
-      "category": "IoT",
+      "components":[ "ESP32-S3 UNO Development Board","10KΩ Potentiometer","Push Button","USB Type-C Cable","USB Data Cable","Jumper Wires","Perfboard"]
+      "image": "🏎️🕹️",
+      "category": "Gamepad",
       "github": "https://github.com/ya947045-lang/projectis/blob/main/DIY%20Sim%20Racing%20Wheel.ino"
     },
     {
