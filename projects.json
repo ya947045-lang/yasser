@@ -11,7 +11,7 @@
       "components": ["DHT22", "BMP280", "OLED 128x64", "MQ-135", "Anemometer", "Rain Sensor"],
       "image": "🌦️",
       "category": "IoT",
-      "github": "https://github.com/futuremaker/esp32-weather"
+      "github": "https://github.com/ya947045-lang/projectis/blob/main/DIY%20Sim%20Racing%20Wheel.ino"
     },
     {
       "id": "pico-robot",
