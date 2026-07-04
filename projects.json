@@ -1,0 +1,470 @@
+{
+  "projects": [
+    {
+      "id": "esp32-weather-station",
+      "name": "ESP32 Weather Station Pro",
+      "description": "Complete weather station with 3.5\" OLED display, multiple sensors, and web dashboard. Measures temperature, humidity, barometric pressure, air quality, and wind speed.",
+      "difficulty": "Intermediate",
+      "cost": "$89",
+      "buildTime": "4 hours",
+      "boards": ["ESP32 DevKit V1", "ESP32-S3 UNO"],
+      "components": ["DHT22", "BMP280", "OLED 128x64", "MQ-135", "Anemometer", "Rain Sensor"],
+      "image": "🌦️",
+      "category": "IoT",
+      "tutorial": "esp32-weather-tutorial",
+      "github": "https://github.com/futuremaker/esp32-weather-pro",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#",
+        "datasheet": "#"
+      }
+    },
+    {
+      "id": "pico-robot-arm",
+      "name": "Raspberry Pi Pico Robot Arm",
+      "description": "6-axis robotic arm controlled via web app or Bluetooth. Supports voice commands and scheduled movements.",
+      "difficulty": "Advanced",
+      "cost": "$145",
+      "buildTime": "8 hours",
+      "boards": ["Raspberry Pi Pico W", "Raspberry Pi Pico"],
+      "components": ["Servo Motors x6", "SG90", "MG995", "Bluetooth HC-05", "Joystick", "Power Supply 5V 5A"],
+      "image": "🦾",
+      "category": "Robotics",
+      "tutorial": "pico-robot-tutorial",
+      "github": "https://github.com/futuremaker/pico-robot-arm",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "pro-micro-keypad",
+      "name": "Pro Micro Macro Keypad Pro",
+      "description": "Programmable keypad with 12 mechanical keys, 4 rotary encoders, and OLED display. Supports multiple profiles.",
+      "difficulty": "Beginner",
+      "cost": "$55",
+      "buildTime": "3 hours",
+      "boards": ["Arduino Pro Micro", "Arduino Leonardo"],
+      "components": ["Cherry MX Blue Switches", "Rotary Encoder x4", "OLED 0.96\"", "LEDs", "Keycaps", "Diodes"],
+      "image": "⌨️",
+      "category": "Input Devices",
+      "tutorial": "pro-micro-keypad-tutorial",
+      "github": "https://github.com/futuremaker/macro-keypad-pro",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "esp32-audio-player",
+      "name": "ESP32 Audio Player with Spotify",
+      "description": "Spotify-connected music player with touchscreen, 20W speaker, and voice control.",
+      "difficulty": "Advanced",
+      "cost": "$120",
+      "buildTime": "6 hours",
+      "boards": ["ESP32 DevKit", "ESP32-S3"],
+      "components": ["MAX98357", "Speaker 20W", "Touch Screen 2.8\"", "Microphone", "SD Card Module"],
+      "image": "🎵",
+      "category": "Audio",
+      "tutorial": "esp32-audio-tutorial",
+      "github": "https://github.com/futuremaker/esp32-spotify-player",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "arduino-security",
+      "name": "Arduino Home Security System",
+      "description": "Complete home security with camera, motion sensors, alarm, and Telegram notifications.",
+      "difficulty": "Intermediate",
+      "cost": "$95",
+      "buildTime": "5 hours",
+      "boards": ["Arduino Mega", "ESP8266"],
+      "components": ["PIR Sensor", "Camera OV7670", "Buzzer", "LED Strip", "Relay Module"],
+      "image": "🔒",
+      "category": "Security",
+      "tutorial": "arduino-security-tutorial",
+      "github": "https://github.com/futuremaker/security-system",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "esp32-plant-watering",
+      "name": "ESP32 Smart Plant Watering",
+      "description": "Smart plant watering system with soil moisture sensors, water pump, and solar power.",
+      "difficulty": "Intermediate",
+      "cost": "$78",
+      "buildTime": "4 hours",
+      "boards": ["ESP32 DevKit", "ESP8266"],
+      "components": ["Soil Moisture Sensor", "Water Pump", "Solar Panel 5V", "Battery 18650", "Relay Module"],
+      "image": "🌱",
+      "category": "Smart Home",
+      "tutorial": "esp32-plant-tutorial",
+      "github": "https://github.com/futuremaker/smart-plant-watering",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "pico-led-matrix",
+      "name": "Pico LED Matrix Display",
+      "description": "64x32 RGB LED matrix display showing time, weather, messages, and animations.",
+      "difficulty": "Beginner",
+      "cost": "$65",
+      "buildTime": "3 hours",
+      "boards": ["Raspberry Pi Pico", "Raspberry Pi Pico W"],
+      "components": ["LED Matrix 64x32", "Power Supply 5V", "Jumper Wires", "RTC Module"],
+      "image": "🖥️",
+      "category": "Display",
+      "tutorial": "pico-matrix-tutorial",
+      "github": "https://github.com/futuremaker/pico-led-matrix",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "esp32-smart-mirror",
+      "name": "ESP32 Smart Mirror with AI",
+      "description": "Smart mirror displaying time, weather, news, calendar, and skin analysis using AI.",
+      "difficulty": "Advanced",
+      "cost": "$200",
+      "buildTime": "10 hours",
+      "boards": ["ESP32-S3", "Raspberry Pi 4"],
+      "components": ["Two-way Mirror", "Display 15\"", "Camera", "Microphone", "Speaker", "LEDs"],
+      "image": "🪞",
+      "category": "AI",
+      "tutorial": "esp32-mirror-tutorial",
+      "github": "https://github.com/futuremaker/smart-mirror",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#",
+        "datasheet": "#"
+      }
+    },
+    {
+      "id": "arduino-gps-tracker",
+      "name": "Arduino GPS Tracker with OLED",
+      "description": "Portable GPS tracker with OLED display, SD storage, and GSM emergency alerts.",
+      "difficulty": "Intermediate",
+      "cost": "$55",
+      "buildTime": "3 hours",
+      "boards": ["Arduino Nano", "Arduino Uno"],
+      "components": ["GPS NEO-6M", "OLED 0.96\"", "SIM800L GSM", "Battery 18650", "SD Card Module"],
+      "image": "📍",
+      "category": "GPS",
+      "tutorial": "arduino-gps-tutorial",
+      "github": "https://github.com/futuremaker/gps-tracker",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "esp32-dash-cam",
+      "name": "ESP32 Dash Cam with AI",
+      "description": "AI-powered dash cam detecting accidents, driver fatigue, and road analysis with cloud storage.",
+      "difficulty": "Advanced",
+      "cost": "$160",
+      "buildTime": "7 hours",
+      "boards": ["ESP32-S3", "ESP32-CAM"],
+      "components": ["Camera OV2640", "SD Card", "GPS Module", "Accelerometer", "Power Supply 12V"],
+      "image": "🚗",
+      "category": "AI",
+      "tutorial": "esp32-dashcam-tutorial",
+      "github": "https://github.com/futuremaker/dash-cam",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "arduino-robot-car",
+      "name": "Arduino Bluetooth Robot Car",
+      "description": "Bluetooth-controlled robot car with obstacle avoidance, line following, and speed control.",
+      "difficulty": "Beginner",
+      "cost": "$45",
+      "buildTime": "2 hours",
+      "boards": ["Arduino Uno", "Arduino Nano"],
+      "components": ["HC-05 Bluetooth", "L298N Motor Driver", "DC Motors x4", "Ultrasonic Sensor", "Battery Pack"],
+      "image": "🚗",
+      "category": "Robotics",
+      "tutorial": "arduino-robot-tutorial",
+      "github": "https://github.com/futuremaker/robot-car",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "esp32-smart-home",
+      "name": "ESP32 Smart Home Hub",
+      "description": "Complete smart home hub with voice control, automation, and mobile app integration.",
+      "difficulty": "Advanced",
+      "cost": "$135",
+      "buildTime": "6 hours",
+      "boards": ["ESP32 DevKit", "ESP32-S3"],
+      "components": ["Relay Module x8", "Temperature Sensor", "Motion Sensor", "LED Strip", "Microphone"],
+      "image": "🏠",
+      "category": "Smart Home",
+      "tutorial": "esp32-smarthome-tutorial",
+      "github": "https://github.com/futuremaker/smart-home-hub",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "pico-weather-station",
+      "name": "Pico Weather Station Mini",
+      "description": "Compact weather station with Pico W, sending data to the cloud via WiFi.",
+      "difficulty": "Intermediate",
+      "cost": "$35",
+      "buildTime": "2 hours",
+      "boards": ["Raspberry Pi Pico W"],
+      "components": ["DHT11", "BMP180", "OLED 0.96\"", "Breadboard", "Jumper Wires"],
+      "image": "🌤️",
+      "category": "IoT",
+      "tutorial": "pico-weather-tutorial",
+      "github": "https://github.com/futuremaker/pico-weather",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "arduino-bluetooth-speaker",
+      "name": "Arduino Bluetooth Speaker",
+      "description": "Portable Bluetooth speaker with LED visualizer, volume control, and long battery life.",
+      "difficulty": "Beginner",
+      "cost": "$40",
+      "buildTime": "2 hours",
+      "boards": ["Arduino Nano"],
+      "components": ["Bluetooth Module", "Speaker 3W", "Amplifier", "Battery 18650", "LED Strip"],
+      "image": "🔊",
+      "category": "Audio",
+      "tutorial": "arduino-speaker-tutorial",
+      "github": "https://github.com/futuremaker/bluetooth-speaker",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "esp32-cctv-camera",
+      "name": "ESP32 CCTV Camera System",
+      "description": "Multi-camera CCTV system with motion detection, cloud recording, and mobile alerts.",
+      "difficulty": "Advanced",
+      "cost": "$180",
+      "buildTime": "8 hours",
+      "boards": ["ESP32-S3", "ESP32-CAM"],
+      "components": ["Camera OV2640 x2", "SD Card", "Motion Sensor", "Power Supply", "LEDs"],
+      "image": "📹",
+      "category": "Security",
+      "tutorial": "esp32-cctv-tutorial",
+      "github": "https://github.com/futuremaker/cctv-system",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "pico-music-player",
+      "name": "Pico MP3 Music Player",
+      "description": "Portable MP3 player with LCD display, volume control, and playback buttons.",
+      "difficulty": "Intermediate",
+      "cost": "$50",
+      "buildTime": "3 hours",
+      "boards": ["Raspberry Pi Pico"],
+      "components": ["MP3 Player Module", "LCD 128x64", "Buttons", "Speaker", "SD Card"],
+      "image": "🎶",
+      "category": "Audio",
+      "tutorial": "pico-music-tutorial",
+      "github": "https://github.com/futuremaker/pico-music",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "arduino-smart-lock",
+      "name": "Arduino Smart Lock System",
+      "description": "Keyless smart lock with fingerprint, keypad, and Bluetooth access control.",
+      "difficulty": "Intermediate",
+      "cost": "$85",
+      "buildTime": "4 hours",
+      "boards": ["Arduino Mega", "ESP8266"],
+      "components": ["Fingerprint Sensor", "Keypad", "Servo Motor", "Bluetooth Module", "Battery"],
+      "image": "🔐",
+      "category": "Security",
+      "tutorial": "arduino-lock-tutorial",
+      "github": "https://github.com/futuremaker/smart-lock",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "esp32-wifi-scanner",
+      "name": "ESP32 WiFi Scanner & Analyzer",
+      "description": "Professional WiFi scanner with signal strength analysis, channel mapping, and reporting.",
+      "difficulty": "Beginner",
+      "cost": "$25",
+      "buildTime": "1 hour",
+      "boards": ["ESP32 DevKit"],
+      "components": ["ESP32", "OLED Display", "Antenna", "Battery"],
+      "image": "📶",
+      "category": "Network",
+      "tutorial": "esp32-scanner-tutorial",
+      "github": "https://github.com/futuremaker/wifi-scanner",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "pico-game-console",
+      "name": "Pico Handheld Game Console",
+      "description": "Retro game console with color screen, D-pad, and 8-bit emulator support.",
+      "difficulty": "Advanced",
+      "cost": "$70",
+      "buildTime": "5 hours",
+      "boards": ["Raspberry Pi Pico"],
+      "components": ["Display 2.4\"", "Buttons", "D-pad", "Speaker", "Battery", "SD Card"],
+      "image": "🎮",
+      "category": "Gaming",
+      "tutorial": "pico-game-tutorial",
+      "github": "https://github.com/futuremaker/pico-console",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    },
+    {
+      "id": "arduino-heart-monitor",
+      "name": "Arduino Heart Rate Monitor",
+      "description": "Medical-grade heart rate monitor with ECG display, alerts, and data logging.",
+      "difficulty": "Intermediate",
+      "cost": "$60",
+      "buildTime": "3 hours",
+      "boards": ["Arduino Uno", "Arduino Nano"],
+      "components": ["Heart Rate Sensor", "OLED Display", "Buzzer", "Battery", "SD Card"],
+      "image": "❤️",
+      "category": "Health",
+      "tutorial": "arduino-heart-tutorial",
+      "github": "https://github.com/futuremaker/heart-monitor",
+      "downloads": {
+        "zip": "#",
+        "pdf": "#",
+        "wiring": "#",
+        "source": "#",
+        "libraries": "#"
+      }
+    }
+  ],
+  
+  "tutorials": [
+    { "id": "esp32-weather-tutorial", "title": "ESP32 Weather Station Guide", "description": "Complete step-by-step guide to build a weather station.", "icon": "🌦️", "link": "#" },
+    { "id": "pico-robot-tutorial", "title": "Pico Robot Arm Assembly", "description": "Build and program a 6-axis robotic arm.", "icon": "🦾", "link": "#" },
+    { "id": "pro-micro-keypad-tutorial", "title": "Macro Keypad Programming", "description": "Program custom macros for your keypad.", "icon": "⌨️", "link": "#" },
+    { "id": "esp32-audio-tutorial", "title": "ESP32 Spotify Player Guide", "description": "Connect Spotify API with ESP32.", "icon": "🎵", "link": "#" },
+    { "id": "arduino-security-tutorial", "title": "Home Security System Guide", "description": "Build a complete security system.", "icon": "🔒", "link": "#" },
+    { "id": "esp32-plant-tutorial", "title": "Smart Plant Watering Guide", "description": "Automate your plant watering system.", "icon": "🌱", "link": "#" },
+    { "id": "pico-matrix-tutorial", "title": "LED Matrix Display Guide", "description": "Create stunning LED displays with Pico.", "icon": "🖥️", "link": "#" },
+    { "id": "esp32-mirror-tutorial", "title": "Smart Mirror Build Guide", "description": "Build an AI-powered smart mirror.", "icon": "🪞", "link": "#" },
+    { "id": "arduino-gps-tutorial", "title": "GPS Tracker Guide", "description": "Build a portable GPS tracking device.", "icon": "📍", "link": "#" },
+    { "id": "esp32-dashcam-tutorial", "title": "AI Dash Cam Guide", "description": "Build an AI-powered dash cam system.", "icon": "🚗", "link": "#" }
+  ],
+  
+  "boards": [
+    { "name": "ESP32 DevKit V1", "status": "Stable", "icon": "🔵", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "ESP32-S3 UNO", "status": "Stable", "icon": "🔵", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "ESP32-S3 Super Mini", "status": "Preview", "icon": "🟣", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "ESP32-CAM", "status": "Stable", "icon": "📷", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "Raspberry Pi Pico", "status": "Stable", "icon": "🟢", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "Raspberry Pi Pico W", "status": "Stable", "icon": "🟢", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "Arduino Uno", "status": "Stable", "icon": "🔴", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "Arduino Nano", "status": "Stable", "icon": "🔴", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "Arduino Mega", "status": "Stable", "icon": "🔴", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "Arduino Pro Micro", "status": "Stable", "icon": "🔴", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "Arduino Leonardo", "status": "Stable", "icon": "🔴", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "ESP8266", "status": "Stable", "icon": "🔵", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "Raspberry Pi 4", "status": "Stable", "icon": "🟢", "documentation": "#", "download": "#", "github": "#" },
+    { "name": "ESP32-S3", "status": "Stable", "icon": "🔵", "documentation": "#", "download": "#", "github": "#" }
+  ],
+  
+  "components": [
+    "ESP32", "Raspberry Pi Pico", "Arduino Uno", "DHT22", "BMP280", "OLED 128x64", 
+    "MQ-135", "Anemometer", "Rain Sensor", "Servo Motors", "SG90", "MG995", 
+    "Bluetooth HC-05", "Joystick", "Power Supply", "Cherry MX Switches", 
+    "Rotary Encoder", "LEDs", "Keycaps", "Diodes", "MAX98357", "Speaker 20W", 
+    "Touch Screen 2.8\"", "Microphone", "SD Card Module", "PIR Sensor", 
+    "Camera OV7670", "Buzzer", "LED Strip", "Relay Module", "Soil Moisture Sensor", 
+    "Water Pump", "Solar Panel 5V", "Battery 18650", "LED Matrix 64x32", 
+    "Two-way Mirror", "Display 15\"", "GPS NEO-6M", "SIM800L GSM", 
+    "Camera OV2640", "Accelerometer", "HC-05 Bluetooth", "L298N Motor Driver", 
+    "DC Motors", "Ultrasonic Sensor", "DHT11", "MP3 Player Module", 
+    "LCD 128x64", "Fingerprint Sensor", "Keypad", "Heart Rate Sensor"
+  ]
+}
